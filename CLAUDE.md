@@ -23,7 +23,7 @@ platform. It provisions three component types across four supported topologies:
 
 **Supported storage backends:** `local`, `etcd`, `dynamodb`, `memory`
 
-**Target OS:** RHEL 8/9, Rocky Linux 8/9 (managed nodes). Control node requires Python ≥ 3.9
+**Target OS:** RHEL 8/9/10, Rocky Linux 8/9/10 (managed nodes). Control node requires Python ≥ 3.9
 and ansible-core ≥ 2.11, < 2.17.
 
 ## Directory Structure
@@ -179,7 +179,7 @@ sequence) — Ansible aborts the *entire* `ansible-playbook` run, not just the c
 moment a play ends with 100% of its hosts failed, and `playbooks/verify.yml` runs servers,
 runners, and clients as separate plays. See `docs/verify.md`'s "Non-Fatal Design" section.
 
-- `verify-os.yml` — asserts RHEL/Rocky 8/9, x86\_64; initializes `validation_errors`
+- `verify-os.yml` — asserts RHEL/Rocky 8/9/10, x86\_64; initializes `validation_errors`
 - `verify-specs.yml` — asserts CPU, RAM, and disk against documented minimums
 - `verify-connectivity.yml` — checks reachability of a `required_repositories` list passed in
   by the caller: `gateway_server_required_repositories` (computed from enabled features) for

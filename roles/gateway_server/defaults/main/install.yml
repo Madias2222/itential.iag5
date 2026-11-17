@@ -57,11 +57,10 @@ gateway_server_relocate_opts: >-
 gateway_server_service_env_file: "{{ gateway_server_config_dir }}/iagctl.env"
 
 # Gateway python installation
-gateway_server_python_packages:
-  - python3.11
-  - python3.11-pip
-  - python3.12
-  - python3.12-pip
+# EL10 does not ship Python 3.11; 3.12 is its system Python
+gateway_server_python_packages: >-
+  {{ ['python3.12', 'python3.12-pip'] if ansible_distribution_major_version | int >= 10
+  else ['python3.11', 'python3.11-pip', 'python3.12', 'python3.12-pip'] }}
 gateway_server_python_executable: /usr/bin/python3.12
 gateway_server_pip_executable: /usr/bin/pip3.12
 gateway_server_local_bin_dir: "/home/{{ gateway_server_user }}/.local/bin"
